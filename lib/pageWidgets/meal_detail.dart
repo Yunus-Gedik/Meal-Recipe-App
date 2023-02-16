@@ -54,9 +54,14 @@ class MealDetail extends StatelessWidget {
                   height: 50,
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.primary,
-                    borderRadius: BorderRadius.circular(10)
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                  margin: EdgeInsets.fromLTRB(
+                    15,
+                    index == 0 ? 15 : 5,
+                    15,
+                    index == this.meal.ingredients.length - 1 ? 15 : 5,
+                  ),
                   child: Center(
                     child: Text(
                       this.meal.ingredients[index],
