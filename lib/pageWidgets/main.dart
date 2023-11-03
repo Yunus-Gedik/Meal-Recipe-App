@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meal/pageWidgets/meal_detail.dart';
-import 'package:meal/pageWidgets/categories_page.dart';
+//import 'package:meal/pageWidgets/categories_page.dart';
 import 'package:meal/pageWidgets/category_detail.dart';
+import 'package:meal/pageWidgets/tab_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,17 +16,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: Categories(),
+      home: TabPage(),
       routes: {
         CategoryDetail.route: (context) {
-          return CategoryDetail(); 
+          return CategoryDetail();
         },
         MealDetail.route: (context) {
           return MealDetail();
         }
       },
       theme: ThemeData(
-        textTheme: Theme.of(context).textTheme.copyWith(
+        textTheme: Theme.of(context).textTheme.copyWith( 
               titleMedium: TextStyle(
                 fontFamily: "Raleway",
                 color: Colors.black,

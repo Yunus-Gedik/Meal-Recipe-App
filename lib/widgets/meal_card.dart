@@ -41,8 +41,8 @@ class MealCard extends StatelessWidget {
     }
   }
 
-  void goMealDetail(BuildContext context){
-    Navigator.pushNamed(context , MealDetail.route, arguments: this.id);
+  void goMealDetail(BuildContext context) {
+    Navigator.pushNamed(context, MealDetail.route, arguments: this.id);
   }
 
   @override
@@ -102,21 +102,48 @@ class MealCard extends StatelessWidget {
                   ),
                 ],
               ),
-              Padding(
+              Container(
                 padding: const EdgeInsets.all(17),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.timer_sharp, size: 30),
-                    Text(" " + this.duration.toString() + " min",
-                        style: infoTextStyle),
-                    Spacer(),
-                    Icon(Icons.schedule_outlined, size: 30),
-                    Text(" " + this.getComplexityStr(), style: infoTextStyle),
-                    Spacer(),
-                    Icon(Icons.attach_money_outlined, size: 30),
-                    Text(" " + this.getAffordabilityStr(), style: infoTextStyle),
-                  ],
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Icon(
+                        Icons.timer_sharp,
+                        size: 25,
+                      ),
+                      Text(
+                        " " + this.duration.toString() + " min",
+                        style: infoTextStyle,
+                      ),
+                      SizedBox(width: 9),
+                      // if (MediaQuery.of(context).orientation ==
+                      //     Orientation.portrait)
+                      //   Spacer(),
+                      Icon(
+                        Icons.schedule_outlined,
+                        size: 25,
+                      ),
+                      Text(
+                        " " + this.getComplexityStr(),
+                        style: infoTextStyle,
+                      ),
+                      //SizedBox(width: 1),
+                      // if (MediaQuery.of(context).orientation ==
+                      //     Orientation.portrait)
+                      //   Spacer(),
+                      Icon(
+                        Icons.attach_money_rounded,
+                        size: 25,
+                      ),
+                      Text(
+                        " " + this.getAffordabilityStr(),
+                        style: infoTextStyle,
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],

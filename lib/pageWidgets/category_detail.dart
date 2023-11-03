@@ -5,14 +5,10 @@ import 'package:meal/model/category.dart';
 import '../model/meal.dart';
 import '../widgets/meal_card.dart';
 
-class CategoryDetail extends StatefulWidget {
+class CategoryDetail extends StatelessWidget {
+  const CategoryDetail();
   static const route = "category_detail";
 
-  @override
-  State<CategoryDetail> createState() => _CategoryDetailState();
-}
-
-class _CategoryDetailState extends State<CategoryDetail> {
   @override
   Widget build(BuildContext context) {
     final Category inputCategory =

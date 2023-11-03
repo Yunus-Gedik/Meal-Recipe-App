@@ -11,10 +11,11 @@ class CategoryCell extends StatelessWidget {
   });
 
   void navigateToDetail(BuildContext context) {
+    //Navigator.push(context, route)
     Navigator.pushNamed(
       context,
       CategoryDetail.route,
-      arguments: this.category
+      arguments: this.category,
     );
   }
 
