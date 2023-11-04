@@ -25,88 +25,88 @@ class MealDetail extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            children: [
-              Image.network(
-                this.meal.imageUrl,
-                fit: BoxFit.cover,
-                width: double.infinity,
-                height: 250,
+        child: Column(
+          children: [
+            Image.network(
+              this.meal.imageUrl,
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: 250,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text(
+                "Ingredients",
+                style: Theme.of(context).textTheme.titleMedium,
               ),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Text(
-                  "Ingredients",
-                  style: Theme.of(context).textTheme.titleMedium,
+            ),
+            GridView.builder(
+              itemBuilder: (context, index) => Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(10,3,10,3),
+                    child: Text(
+                      this.meal.ingredients[index],
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
                 ),
               ),
-              ...this
-                  .meal
-                  .ingredients
-                  .mapIndexed(
-                    (index, element) => Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      margin: EdgeInsets.fromLTRB(
-                        15,
-                        index == 0 ? 15 : 5,
-                        15,
-                        index == this.meal.ingredients.length - 1 ? 15 : 5,
-                      ),
-                      child: Center(
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200,
+                mainAxisSpacing: 5,
+                crossAxisSpacing: 5,
+                childAspectRatio: 3,
+              ),
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: this.meal.ingredients.length,
+              shrinkWrap: true,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text(
+                "Steps",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
+            ...this
+                .meal
+                .steps
+                .mapIndexed(
+                  (index, _) => Container(
+                    //height: 50,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primary,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    margin: EdgeInsets.fromLTRB(
+                      15,
+                      index == 0 ? 15 : 5,
+                      15,
+                      index == this.meal.steps.length - 1 ? 15 : 5,
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(15),
                         child: Text(
-                          this.meal.ingredients[index],
+                          this.meal.steps[index],
                           style: TextStyle(
                             fontSize: 15,
                           ),
                         ),
                       ),
                     ),
-                  )
-                  .toList(),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Text(
-                  "Steps",
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ),
-              ...this
-                  .meal
-                  .ingredients
-                  .mapIndexed(
-                    (index, _) => Container(
-                      //height: 50,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      margin: EdgeInsets.fromLTRB(
-                        15,
-                        index == 0 ? 15 : 5,
-                        15,
-                        index == this.meal.steps.length - 1 ? 15 : 5,
-                      ),
-                      child: Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(15),
-                          child: Text(
-                            this.meal.steps[index],
-                            style: TextStyle(
-                              fontSize: 15,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                  .toList(),
-            ],
-          ),
+                  ),
+                )
+                .toList(),
+          ],
         ),
       ),
     );
