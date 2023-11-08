@@ -8,20 +8,17 @@ import '../model/meal.dart';
 class MealDetail extends StatelessWidget {
   static const route = "meal_detail";
 
-  late final Meal meal;
-
-  MealDetail();
+  MealDetail({super.key});
 
   @override
   Widget build(BuildContext context) {
     final String mealId = ModalRoute.of(context)!.settings.arguments as String;
-
-    this.meal = DUMMY_MEALS.firstWhere((Meal meal) => meal.id == mealId);
+    final Meal meal = DUMMY_MEALS.firstWhere((Meal meal) => meal.id == mealId);
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          this.meal.title,
+          meal.title,
           style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
@@ -34,7 +31,7 @@ class MealDetail extends StatelessWidget {
           child: Column(
             children: [
               Image.network(
-                this.meal.imageUrl,
+                meal.imageUrl,
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: 250,
@@ -56,7 +53,7 @@ class MealDetail extends StatelessWidget {
                         : 4,
                 mainAxisSpacing: 5,
                 crossAxisSpacing: 5,
-                itemCount: this.meal.ingredients.length,
+                itemCount: meal.ingredients.length,
                 itemBuilder: (context, index) => Container(
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.primary,
@@ -67,7 +64,7 @@ class MealDetail extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(10, 6, 10, 6),
                       child: Text(
-                        this.meal.ingredients[index],
+                        meal.ingredients[index],
                         style: TextStyle(
                           fontSize: 15,
                         ),
@@ -83,9 +80,7 @@ class MealDetail extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
-              ...this
-                  .meal
-                  .steps
+              ...meal.steps
                   .mapIndexed(
                     (index, _) => Container(
                       //height: 50,
@@ -97,13 +92,13 @@ class MealDetail extends StatelessWidget {
                         15,
                         index == 0 ? 15 : 5,
                         15,
-                        index == this.meal.steps.length - 1 ? 15 : 5,
+                        index == meal.steps.length - 1 ? 15 : 5,
                       ),
                       child: Center(
                         child: Padding(
                           padding: EdgeInsets.all(15),
                           child: Text(
-                            this.meal.steps[index],
+                            meal.steps[index],
                             style: TextStyle(
                               fontSize: 15,
                             ),
